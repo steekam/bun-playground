@@ -7,3 +7,5 @@ oranges, or `-1` if impossible.
 Examples: `[[2,1,1],[1,1,0],[0,1,1]] -> 4`, `[[2,1,1],[0,1,1],[1,0,1]] -> -1`.
 
 Pattern: multi-source BFS. Start the queue with every rotten orange.
+
+Source: Cassidoo #477 (https://cassidoo.co/newsletter/2026-10-04/). Fidelity: faithful.

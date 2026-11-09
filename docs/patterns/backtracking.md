@@ -43,5 +43,5 @@ the worst-case class without proof.
 ## Practice
 
 - [Phone-Letter Combinations](../../problems/phone-letter-combinations/README.md)
-- [Pack Suitcases](../../problems/minimum-bins/README.md)
+- [Pack Suitcases](../../problems/pack-suitcases/README.md)
 - [All Shortest Grid Paths](../../problems/all-shortest-grid-paths/README.md)

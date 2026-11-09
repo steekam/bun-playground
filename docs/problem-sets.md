@@ -10,6 +10,22 @@ The registry also lists earlier non-Cassidoo exercises as local extensions.
 For the algorithm ideas behind the problem sets, see the
 [pattern guide](patterns/README.md).
 
+## Source fidelity
+
+Problems catalogued in `problems/registry.js` come from Cassidoo's newsletter. The
+verbatim question for every issue is in `data/cassidoo-issues.json` (pulled from
+https://cassidoo.co/newsletter/archive). When adding or changing one of them:
+
+1. Start from the corpus text, not a summary, and keep the issue's function
+   signature, argument order, return shape, and examples.
+2. Put the issue's examples first in `cases.js`.
+3. End the README with `Source: Cassidoo #N (<url>). Fidelity: faithful.` or
+   `Fidelity: adapted. <why>` when the issue is underspecified or non-deterministic.
+4. Record any assumption you had to make in the README.
+
+`bun test` runs `test/fidelity.test.js`, which fails when a registered problem is
+missing its source link or fidelity note.
+
 ## Directory contract
 
 ```text

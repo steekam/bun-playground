@@ -1,5 +1,4 @@
-function validate(input) {
-  const { a, b } = input;
+function validate([a, b]) {
   let left = a.length - b.length - 1;
   let right = b.length - 1;
   let write = a.length - 1;

@@ -1,44 +1,26 @@
-function validate(input) {
-  const { text, pattern, maxEdits } = input;
-  if (pattern.length === 0) return true;
-  if (pattern.length > 31 || maxEdits < 0) return false;
-
-  // Keep the compact bit-mask representation useful for exact searches.
-  if (maxEdits === 0) {
-    const masks = new Map();
-    for (let index = 0; index < pattern.length; index += 1) {
-      masks.set(pattern[index], (masks.get(pattern[index]) ?? 0) | (1 << index));
-    }
-
-    let state = ~1;
-    const matchBit = 1 << (pattern.length - 1);
-    for (const character of text) {
-      state = ((state << 1) | 1) & (masks.get(character) ?? 0);
-      if ((state & matchBit) !== 0) return true;
-    }
-    return false;
-  }
-
-  // For fuzzy matching, this rolling row makes insertions, deletions, and
-  // substitutions explicit and avoids the short-string false positives that
-  // a naive approximate bit-mask implementation can produce.
+function bestDistance(text, start, pattern) {
   let previous = Array.from({ length: pattern.length + 1 }, (_, index) => index);
+  let best = previous[pattern.length];
 
-  for (const character of text) {
-    const current = [0];
+  for (let offset = start; offset < text.length; offset += 1) {
+    const current = [previous[0] + 1];
     for (let index = 1; index <= pattern.length; index += 1) {
-      current[index] = Math.min(
-        previous[index] + 1,
-        current[index - 1] + 1,
-        previous[index - 1] + (pattern[index - 1] === character ? 0 : 1),
-      );
+      const substitution = previous[index - 1] + (pattern[index - 1] === text[offset] ? 0 : 1);
+      current[index] = Math.min(substitution, previous[index] + 1, current[index - 1] + 1);
     }
-
-    if (current[pattern.length] <= maxEdits) return true;
+    best = Math.min(best, current[pattern.length]);
     previous = current;
   }
+  return best;
+}
 
-  return false;
+function validate([text, pattern, maxErrors]) {
+  const matches = [];
+  for (let position = 0; position < text.length; position += 1) {
+    const errors = bestDistance(text, position, pattern);
+    if (errors <= maxErrors) matches.push({ position, errors });
+  }
+  return matches;
 }
 
 export { validate };

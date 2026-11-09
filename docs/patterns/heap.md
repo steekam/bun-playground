@@ -34,7 +34,7 @@ pops is usually `O(n log n)`.
 
 ## Practice
 
-- [Pack Suitcases](../../problems/minimum-bins/README.md)
+- [Pack Suitcases](../../problems/pack-suitcases/README.md)
 - [Deck, Shuffle, and Draw](../../problems/deck-shuffle-and-draw/README.md)
 - [Meal-Prep Scheduling](../../problems/meal-prep-scheduling/README.md)
 

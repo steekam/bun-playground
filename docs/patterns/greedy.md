@@ -34,6 +34,6 @@ data structure.
 - [Meal-Prep Scheduling](../../problems/meal-prep-scheduling/README.md)
 - [Scarecrow Placement](../../problems/scarecrow-placement/README.md)
 - [Minimum Swaps to Sort](../../problems/minimum-swaps-to-sort/README.md)
-- [Pack Suitcases](../../problems/minimum-bins/README.md)
+- [Pack Suitcases](../../problems/pack-suitcases/README.md)
 
 See [CP-Algorithms: scheduling](https://cp-algorithms.com/schedules/schedule-with-completion-duration.html).

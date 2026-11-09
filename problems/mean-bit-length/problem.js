@@ -1,8 +1,12 @@
 function validate(n) {
-  if (n === 0) return 0;
   let total = 0;
-  for (let value = 1; value <= n; value += 1) total += Math.floor(Math.log2(value)) + 1;
-  return total / n;
+  for (let length = 1; ; length += 1) {
+    const low = length === 1 ? 0 : 2 ** (length - 1);
+    if (low > n - 1) break;
+    const high = Math.min(2 ** length - 1, n - 1);
+    total += (high - low + 1) * length;
+  }
+  return Math.round((total / n) * 100) / 100;
 }
 
 export { validate };

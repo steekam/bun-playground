@@ -41,6 +41,6 @@ is usually `O(1)`.
 ## Practice
 
 - [Longest Consecutive Sequence](../../problems/longest-consecutive-sequence/README.md) — use the set version first, then design a binary-search variant.
-- [Pack Suitcases](../../problems/minimum-bins/README.md) — ask whether capacity or bin count can be searched.
+- [Pack Suitcases](../../problems/pack-suitcases/README.md) — ask whether capacity or bin count can be searched.
 
 See [CP-Algorithms: binary search](https://cp-algorithms.com/num_methods/binary_search.html).

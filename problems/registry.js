@@ -19,7 +19,7 @@ const registry = [
   ["#447", "minimum-swaps-to-alternate", "Greedy & rearrangement", "expansion", "Adjacent-swap positional distance", "minimum-swaps-to-alternate"],
   ["#428", "scarecrow-placement", "Greedy & rearrangement", "optional", "Greedy line coverage", "scarecrow-placement"],
   ["#430", "merge-into-buffered-array", "Greedy & rearrangement", "optional", "Backwards two-pointer placement", "merge-into-buffered-array"],
-  ["#459", "pack-suitcases", "Search & combinatorics", "expansion", "Bin packing and branch-and-bound", "minimum-bins"],
+  ["#459", "pack-suitcases", "Search & combinatorics", "expansion", "Bin packing and branch-and-bound", "pack-suitcases"],
   ["#454", "repair-broken-regions", "Search & combinatorics", "optional", "Components plus combinatorial optimization", "repair-broken-regions"],
   ["#224", "phone-letter-combinations", "Search & combinatorics", "expansion", "Backtracking trees", "phone-letter-combinations"],
   ["#256", "clone-random-pointer-list", "Linked structures", "primary", "Identity-rich object graphs", "clone-random-pointer-list"],
@@ -27,7 +27,8 @@ const registry = [
   ["#258", "list-intersection", "Linked structures", "optional", "Reference identity", "list-intersection"],
   ["#456", "bouncing-logo-to-target", "Simulation & state machines", "optional", "Complete-state modeling and loops", "bouncing-logo-to-target"],
   ["#383", "white-elephant-exchange", "Simulation & state machines", "expansion", "Stateful rules and invariants", "white-elephant-exchange"],
-  ["#276", "valid-catan-board", "Simulation & state machines", "optional", "Random generation constraints", "valid-catan-board"],
+  ["#276", "valid-chess-move", "Simulation & state machines", "optional", "Rule tables and ray scanning", "valid-chess-move"],
+  ["#277", "valid-catan-board", "Simulation & state machines", "optional", "Random generation constraints", "valid-catan-board"],
   ["#259", "count-digit-ones", "Math & number theory", "expansion", "Positional digit counting", "count-digit-ones"],
   ["#270", "toggle-doors", "Math & number theory", "optional", "Divisor-count and square insight", "toggle-doors"],
   ["#463", "mean-bit-length", "Math & number theory", "optional", "Power-of-two range aggregation", "mean-bit-length"],
@@ -59,7 +60,6 @@ const registry = [
 const localExtensions = [
   ["circular-route", "Cycle detection practice"],
   ["largest-grid-component", "Connected-component practice"],
-  ["minimum-bins", "Bin-packing practice"],
   ["minimum-swaps-to-sort", "Permutation-cycle practice"],
   ["spiral-matrix", "Simulation practice"],
 ].map(([slug, learning]) => ({ slug, learning }));

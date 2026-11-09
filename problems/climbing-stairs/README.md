@@ -7,3 +7,5 @@ Examples: `2 -> 2`, `3 -> 3`, `5 -> 8`.
 
 Target `O(n)` time and `O(1)` extra space. Pattern: bottom-up dynamic
 programming. Treat `n = 0` as one valid empty sequence.
+
+Source: Cassidoo #472 (https://cassidoo.co/newsletter/2026-08-30/). Fidelity: faithful.

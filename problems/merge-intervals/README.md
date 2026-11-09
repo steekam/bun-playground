@@ -6,3 +6,5 @@ normalized list sorted by start.
 Examples: `[[1,3],[2,6],[8,10],[9,12]] -> [[1,6],[8,12]]`.
 
 Pattern: sort once, then sweep while maintaining the current merged interval.
+
+Source: Cassidoo #245 (https://cassidoo.co/newsletter/2022-04-24/). Fidelity: faithful.

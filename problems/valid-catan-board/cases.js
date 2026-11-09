@@ -1,7 +1,10 @@
 const cases = [
-  [{ tiles: [{ terrain: "wood", number: 5 }, { terrain: "brick", number: 9 }], edges: [[0, 1]] }, true],
-  [{ tiles: [{ terrain: "wood", number: 5 }, { terrain: "wood", number: 9 }], edges: [[0, 1]] }, false],
-  [{ tiles: [{ terrain: "wood", number: 6 }, { terrain: "brick", number: 8 }], edges: [[0, 1]] }, false],
+  [[" B 9 A", " 5 6 C 8", "6 4 B 5 3", " 2 8 9 3", " A . 4"], true],
+  [[" B B C", " 3 A 3 A", "2 4 6 . 6", " 4 5 9 9", " 8 5 8"], true],
+  [[" 6 3 8", " 2 4 5 A", "5 9 . 6 9", " A B 3 C", " 8 4 B"], true],
+  [[" 6 8 A", " 5 3 C 8", "6 4 B 5 3", " 2 B 9 3", " A . 4"], false],
+  [[" B 9 A", " 5 6 C 8", "6 4 B 5 3", " 2 8 9 3", " A . 4", " 1"], false],
+  [[" B 9 A", " 5 6 C 8", "6 4 B 5 3", " 2 8 9 3", " A 4 4"], false],
 ];
 
 export { cases };

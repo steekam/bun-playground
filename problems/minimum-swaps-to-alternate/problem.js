@@ -1,24 +1,21 @@
-function swapsFor(pattern, expected) {
-  const positions = [];
-  for (let index = 0; index < pattern.length; index += 1) {
-    if (pattern[index] === "1") positions.push(index);
-  }
-  const targets = [];
-  for (let index = 0; index < pattern.length; index += 1) {
-    if (expected[index] === "1") targets.push(index);
-  }
-  return positions.reduce((sum, position, index) => sum + Math.abs(position - targets[index]), 0);
+function swapsFor(text, firstLetter) {
+  let total = 0;
+  let target = firstLetter === "a" ? 0 : 1;
+  [...text].forEach((character, index) => {
+    if (character !== "a") return;
+    total += Math.abs(index - target);
+    target += 2;
+  });
+  return total;
 }
 
-function validate(pattern) {
-  const ones = [...pattern].filter((value) => value === "1").length;
-  const zeroes = pattern.length - ones;
-  if (Math.abs(ones - zeroes) > 1) return -1;
-
-  const options = [];
-  if (zeroes >= ones) options.push(swapsFor(pattern, [...pattern].map((_, i) => i % 2 ? "1" : "0")));
-  if (ones >= zeroes) options.push(swapsFor(pattern, [...pattern].map((_, i) => i % 2 ? "0" : "1")));
-  return Math.min(...options);
+function validate(text) {
+  const as = [...text].filter((character) => character === "a").length;
+  const bs = text.length - as;
+  if (Math.abs(as - bs) > 1) return -1;
+  if (as > bs) return swapsFor(text, "a");
+  if (bs > as) return swapsFor(text, "b");
+  return Math.min(swapsFor(text, "a"), swapsFor(text, "b"));
 }
 
 export { validate };

@@ -1,8 +1,21 @@
 # Fire-Station Coverage
 
-In a grid, `0` is empty, `1` is a house, and `2` is a fire station. Return the
-largest shortest-path distance from a house to a station, or `-1` if any house
-cannot reach one. Movement is up, down, left, or right.
+> You're given a 2D grid representing a city where each cell is either empty
+> (`0`), a fire station (`1`), or a building (`2`). Fire stations can serve
+> buildings based on horizontal + vertical moves only. Return a 2D grid where
+> each cell shows the minimum distance to the nearest fire station.
 
-Pattern: multi-source BFS seeded with every station. Return `0` when there are
-no houses.
+```js
+fireStationCoverage([
+  [2, 0, 1],
+  [0, 2, 0],
+  [1, 0, 2],
+]);
+// [[2, 1, 0], [1, 2, 1], [0, 1, 2]]
+```
+
+Assumption: a cell that no station can reach is `-1`. Every cell type can be
+crossed.
+
+Source: Cassidoo #448 (https://cassidoo.co/newsletter/2026-03-15/). Fidelity: faithful.
+Pattern: multi-source BFS seeded with every station.

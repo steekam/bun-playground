@@ -1,50 +1,73 @@
-function validate(grid) {
-  const state = grid.map((row) => [...row]);
-  const sizes = [];
-  const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];
-  let id = 2;
+function findRegions(grid) {
+  const seen = grid.map((row) => row.map(() => false));
+  const regions = [];
 
-  function fill(row, column) {
-    const queue = [[row, column]];
-    state[row][column] = id;
+  grid.forEach((row, rowIndex) => {
+    row.forEach((cell, columnIndex) => {
+      if (cell !== 0 || seen[rowIndex][columnIndex]) return;
+      const region = [];
+      const stack = [[rowIndex, columnIndex]];
+      seen[rowIndex][columnIndex] = true;
+      while (stack.length > 0) {
+        const [r, c] = stack.pop();
+        region.push([r, c]);
+        for (const [nr, nc] of [[r + 1, c], [r - 1, c], [r, c + 1], [r, c - 1]]) {
+          if (grid[nr]?.[nc] !== 0 || seen[nr][nc]) continue;
+          seen[nr][nc] = true;
+          stack.push([nr, nc]);
+        }
+      }
+      regions.push(region);
+    });
+  });
+  return regions;
+}
+
+function largestRemaining(region, removed) {
+  const index = new Map(region.map(([r, c], position) => [`${r},${c}`, position]));
+  const seen = new Set(removed);
+  let largest = 0;
+
+  for (let start = 0; start < region.length; start += 1) {
+    if (seen.has(start)) continue;
     let size = 0;
-    for (let head = 0; head < queue.length; head += 1) {
-      const [currentRow, currentColumn] = queue[head];
+    const stack = [start];
+    seen.add(start);
+    while (stack.length > 0) {
+      const [r, c] = region[stack.pop()];
       size += 1;
-      for (const [rowOffset, columnOffset] of directions) {
-        const nextRow = currentRow + rowOffset;
-        const nextColumn = currentColumn + columnOffset;
-        if (state[nextRow]?.[nextColumn] !== 1) continue;
-        state[nextRow][nextColumn] = id;
-        queue.push([nextRow, nextColumn]);
+      for (const key of [`${r + 1},${c}`, `${r - 1},${c}`, `${r},${c + 1}`, `${r},${c - 1}`]) {
+        const next = index.get(key);
+        if (next === undefined || seen.has(next)) continue;
+        seen.add(next);
+        stack.push(next);
       }
     }
-    sizes[id] = size;
-    id += 1;
+    largest = Math.max(largest, size);
   }
+  return largest;
+}
 
-  for (let row = 0; row < state.length; row += 1) {
-    for (let column = 0; column < state[row].length; column += 1) {
-      if (state[row][column] === 1) fill(row, column);
-    }
+function canFix(region, repairs, k, from, removed) {
+  if (repairs === 0) return largestRemaining(region, removed) <= k;
+  for (let index = from; index <= region.length - repairs; index += 1) {
+    removed.add(index);
+    const fixed = canFix(region, repairs - 1, k, index + 1, removed);
+    removed.delete(index);
+    if (fixed) return true;
   }
+  return false;
+}
 
-  let best = 0;
-  for (let row = 0; row < state.length; row += 1) {
-    for (let column = 0; column < state[row].length; column += 1) {
-      if (state[row][column] !== 0) {
-        best = Math.max(best, sizes[state[row][column]] ?? 0);
-        continue;
-      }
-      const adjacent = new Set();
-      for (const [rowOffset, columnOffset] of directions) {
-        const region = state[row + rowOffset]?.[column + columnOffset];
-        if (region >= 2) adjacent.add(region);
-      }
-      best = Math.max(best, 1 + [...adjacent].reduce((sum, region) => sum + sizes[region], 0));
-    }
+function validate([grid, k]) {
+  let total = 0;
+  for (const region of findRegions(grid)) {
+    if (region.length <= k) continue;
+    let repairs = 1;
+    while (!canFix(region, repairs, k, 0, new Set())) repairs += 1;
+    total += repairs;
   }
-  return best;
+  return total;
 }
 
 export { validate };

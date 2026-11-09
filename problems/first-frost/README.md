@@ -12,4 +12,4 @@ Input is `[temperatures, drop]`. The reference is `O(n^2)`. Stretch goal:
 day whose temperature is at least `current + drop`. Note the threshold shifts per
 day, so a plain monotonic stack is not enough.
 
-Source: Cassidoo #476 (https://cassidoo.co/newsletter/2026-09-27/).
+Source: Cassidoo #476 (https://cassidoo.co/newsletter/2026-09-27/). Fidelity: faithful.

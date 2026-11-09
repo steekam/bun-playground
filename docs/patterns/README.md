@@ -36,7 +36,7 @@ the problem.
 | 11 | Dynamic programming | [Maximum Subarray](../../problems/maximum-subarray/README.md) |
 | 12 | Backtracking | [Phone-Letter Combinations](../../problems/phone-letter-combinations/README.md) |
 | 13 | Binary search | [Longest Consecutive Sequence](../../problems/longest-consecutive-sequence/README.md) |
-| 14 | Heap and priority queue | [Pack Suitcases](../../problems/minimum-bins/README.md) |
+| 14 | Heap and priority queue | [Pack Suitcases](../../problems/pack-suitcases/README.md) |
 | 15 | Bit manipulation | [Bitap Fuzzy Search](../../problems/approximate-search/README.md) |
 
 ## Pattern index

@@ -1,17 +1,16 @@
-function validate(input) {
-  const { length, radius } = input;
-  let coveredUntil = -1;
-  let count = 0;
-  let position = 0;
+function validate([field, k]) {
+  const reachLeft = Math.floor((k - 1) / 2);
+  const reachRight = Math.floor(k / 2);
+  const placements = [];
+  let protectedUntil = -1;
 
-  while (position < length) {
-    const placement = Math.min(length - 1, position + radius);
-    coveredUntil = placement + radius;
-    count += 1;
-    position = coveredUntil + 1;
-  }
-
-  return count;
+  field.forEach((needsProtection, position) => {
+    if (needsProtection !== 1 || position <= protectedUntil) return;
+    const index = Math.min(position + reachLeft, field.length - 1);
+    placements.push(index);
+    protectedUntil = index + reachRight;
+  });
+  return placements;
 }
 
 export { validate };

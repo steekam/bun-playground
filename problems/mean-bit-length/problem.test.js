@@ -3,5 +3,5 @@ import { cases } from "./cases.js";
 import { validate } from "./problem.js";
 
 test.each(cases)("mean bit length: %j -> %j", (input, expected) => {
-  expect(validate(input)).toBeCloseTo(expected);
+  expect(validate(input)).toEqual(expected);
 });

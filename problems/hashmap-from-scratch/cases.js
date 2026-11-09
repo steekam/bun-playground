@@ -1,6 +1,9 @@
 const cases = [
-  [{ operations: [["set", "a", 1], ["get", "a"], ["get", "b"], ["delete", "a"], ["get", "a"]] }, [1, null, true, null]],
-  [{ operations: [["set", "x", 1], ["set", "x", 2], ["get", "x"]] }, [2]],
+  [[["put", 1, 1], ["put", 2, 2], ["get", 1], ["get", 3], ["put", 2, 1], ["get", 2], ["remove", 2], ["get", 2]], [1, -1, 1, -1]],
+  [[], []],
+  [[["get", 5]], [-1]],
+  [[["put", 8, 80], ["put", 16, 160], ["get", 8], ["get", 16], ["remove", 8], ["get", 8], ["get", 16]], [80, 160, -1, 160]],
+  [[["put", -1, 7], ["get", -1], ["remove", 9], ["get", -1]], [7, 7]],
 ];
 
 export { cases };

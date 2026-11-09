@@ -5,3 +5,5 @@ values need not be adjacent.
 
 Target `O(n log n)` with a tails array; an `O(n²)` DP solution is a useful first
 pass.
+
+Source: Cassidoo #361 (https://cassidoo.co/newsletter/2024-07-14/). Fidelity: faithful.

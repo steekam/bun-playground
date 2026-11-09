@@ -1,40 +1,55 @@
-function validate(input) {
-  const { grid, start, target } = input;
-  const key = ([row, column]) => `${row},${column}`;
-  const distances = new Map([[key(start), 0]]);
-  const queue = [start];
-  const parents = new Map();
-  const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+const moves = [
+  ["right", 0, 1],
+  ["down", 1, 0],
+  ["left", 0, -1],
+  ["up", -1, 0],
+];
 
+function find(grid, value) {
+  for (let row = 0; row < grid.length; row += 1) {
+    const column = grid[row].indexOf(value);
+    if (column !== -1) return [row, column];
+  }
+  return null;
+}
+
+function validate(grid) {
+  const start = find(grid, 1);
+  const end = find(grid, 2);
+  if (!start || !end) return [];
+
+  const distances = grid.map((row) => row.map(() => -1));
+  distances[end[0]][end[1]] = 0;
+  const queue = [end];
   for (let head = 0; head < queue.length; head += 1) {
-    const current = queue[head];
-    for (const [rowOffset, columnOffset] of directions) {
-      const next = [current[0] + rowOffset, current[1] + columnOffset];
-      if (grid[next[0]]?.[next[1]] !== 0) continue;
-      const nextKey = key(next);
-      const distance = distances.get(key(current)) + 1;
-      if (!distances.has(nextKey)) {
-        distances.set(nextKey, distance);
-        parents.set(nextKey, [current]);
-        queue.push(next);
-      } else if (distances.get(nextKey) === distance) {
-        parents.get(nextKey).push(current);
-      }
+    const [row, column] = queue[head];
+    for (const [, rowOffset, columnOffset] of moves) {
+      const nextRow = row + rowOffset;
+      const nextColumn = column + columnOffset;
+      if (grid[nextRow]?.[nextColumn] === undefined || grid[nextRow][nextColumn] === 3) continue;
+      if (distances[nextRow][nextColumn] !== -1) continue;
+      distances[nextRow][nextColumn] = distances[row][column] + 1;
+      queue.push([nextRow, nextColumn]);
     }
   }
 
-  const targetKey = key(target);
-  if (!distances.has(targetKey)) return [];
   const paths = [];
-  function build(node, path) {
-    if (key(node) === key(start)) {
-      paths.push([start, ...path.reverse()]);
+  const walk = ([row, column], path) => {
+    if (distances[row][column] === 0) {
+      paths.push([...path]);
       return;
     }
-    for (const parent of parents.get(key(node)) ?? []) build(parent, [...path, node]);
-  }
-  build(target, []);
-  return paths.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+    for (const [name, rowOffset, columnOffset] of moves) {
+      const nextRow = row + rowOffset;
+      const nextColumn = column + columnOffset;
+      if (distances[nextRow]?.[nextColumn] !== distances[row][column] - 1) continue;
+      path.push(name);
+      walk([nextRow, nextColumn], path);
+      path.pop();
+    }
+  };
+  if (distances[start[0]][start[1]] !== -1) walk(start, []);
+  return paths;
 }
 
 export { validate };

@@ -1,14 +1,12 @@
-function validate(input) {
-  const { links, start } = input;
-  const visited = new Set();
-  let current = start;
+function validate([fileSystem, path]) {
+  const seen = new Set();
+  let current = path;
 
-  while (links[current] !== undefined) {
-    if (visited.has(current)) return "CYCLE";
-    visited.add(current);
-    current = links[current];
+  while (typeof fileSystem[current] === "string") {
+    if (seen.has(current)) return null;
+    seen.add(current);
+    current = fileSystem[current];
   }
-
   return current;
 }
 

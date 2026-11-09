@@ -10,5 +10,6 @@ Examples: `["00:50", "01:10", "01:50", "01:10", "02:10"] -> 140`,
 Assumption: a step that goes backwards is the rollback, so add 60 minutes to
 that step. The reference sums consecutive steps; equal timestamps count as 0.
 
-Source: Cassidoo #481 (https://cassidoo.co/newsletter/2026-11-01/).
 Pattern: time arithmetic and spotting the discontinuity.
+
+Source: Cassidoo #481 (https://cassidoo.co/newsletter/2026-11-01/). Fidelity: faithful.

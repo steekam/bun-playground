@@ -1,27 +1,26 @@
-function validate(input) {
-  const { layout, queries } = input;
-  const prefix = [0];
-  const previousWall = Array(layout.length).fill(-1);
-  const nextWall = Array(layout.length).fill(-1);
-  let lastWall = -1;
+function containedItemsInRanges(layout, ranges) {
+  const itemsBefore = [0];
+  const nextWall = new Array(layout.length + 1).fill(Infinity);
+  const previousWall = new Array(layout.length).fill(-Infinity);
 
-  for (let index = 0; index < layout.length; index += 1) {
-    if (layout[index] === "|") lastWall = index;
-    previousWall[index] = lastWall;
-    prefix[index + 1] = prefix[index] + (layout[index] === "*" ? 1 : 0);
-  }
-
-  lastWall = -1;
+  layout.split("").forEach((character, index) => {
+    itemsBefore.push(itemsBefore[index] + (character === "*" ? 1 : 0));
+    previousWall[index] = character === "|" ? index : (previousWall[index - 1] ?? -Infinity);
+  });
   for (let index = layout.length - 1; index >= 0; index -= 1) {
-    if (layout[index] === "|") lastWall = index;
-    nextWall[index] = lastWall;
+    nextWall[index] = layout[index] === "|" ? index : nextWall[index + 1];
   }
 
-  return queries.map(([left, right]) => {
-    const start = nextWall[left];
-    const end = previousWall[right];
-    return start !== -1 && end !== -1 && start < end ? prefix[end] - prefix[start + 1] : 0;
+  return ranges.map(([start, end]) => {
+    if (end <= start) return 0;
+    const left = nextWall[start];
+    const right = previousWall[end - 1];
+    return left < right ? itemsBefore[right] - itemsBefore[left] : 0;
   });
 }
 
-export { validate };
+function validate([layout, start, end]) {
+  return containedItemsInRanges(layout, [[start, end]])[0];
+}
+
+export { containedItemsInRanges, validate };
