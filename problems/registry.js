@@ -1,0 +1,56 @@
+/* Local index of the selected Cassidoo archive. A null localPath is catalogued
+ * for reference but has not been materialized as a practice folder yet. */
+const registry = [
+  ["#446", "majority-element", "Arrays & hashing", "primary", "Boyer–Moore cancellation", "majority-element"],
+  ["#236", "longest-consecutive-sequence", "Arrays & hashing", "expansion", "Hash-set sequence starts", "longest-consecutive-sequence"],
+  ["#223", "group-anagrams", "Arrays & hashing", "optional", "Canonical hashmap keys", "group-anagrams"],
+  ["#449", "bitap-fuzzy-search", "Strings & parsing", "primary", "Bit-parallel approximate matching", "approximate-search"],
+  ["#261", "longest-valid-parentheses", "Strings & parsing", "primary", "Stack boundaries versus DP", "longest-valid-parentheses"],
+  ["#440", "konami-code-mapping", "Strings & parsing", "expansion", "Bidirectional pattern mappings", "konami-code-mapping"],
+  ["#448", "fire-station-coverage", "Graphs & grids", "primary", "Multi-source BFS", "fire-station-coverage"],
+  ["#450", "symlink-resolution", "Graphs & grids", "primary", "Functional-graph traversal and cycles", "symlink-resolution"],
+  ["#249", "all-shortest-grid-paths", "Graphs & grids", "expansion", "BFS distances and reconstruction", "all-shortest-grid-paths"],
+  ["#245", "merge-intervals", "Intervals & prefix techniques", "primary", "Sort-and-sweep normalization", "merge-intervals"],
+  ["#241", "items-in-compartments", "Intervals & prefix techniques", "primary", "Prefix preprocessing for range queries", "items-in-compartments"],
+  ["#432", "meal-prep-scheduling", "Intervals & prefix techniques", "optional", "Activity-selection greedy proof", "meal-prep-scheduling"],
+  ["#445", "maximum-subarray", "Dynamic programming", "primary", "One-state recurrence and rolling optimization", "maximum-subarray"],
+  ["#361", "longest-increasing-subsequence", "Dynamic programming", "expansion", "Sequence DP and patience sorting", "longest-increasing-subsequence"],
+  ["#237", "largest-rectangle-of-ones", "Dynamic programming", "primary", "2D-to-histogram reduction", "largest-rectangle-of-ones"],
+  ["#447", "minimum-swaps-to-alternate", "Greedy & rearrangement", "expansion", "Adjacent-swap positional distance", "minimum-swaps-to-alternate"],
+  ["#428", "scarecrow-placement", "Greedy & rearrangement", "optional", "Greedy line coverage", "scarecrow-placement"],
+  ["#430", "merge-into-buffered-array", "Greedy & rearrangement", "optional", "Backwards two-pointer placement", "merge-into-buffered-array"],
+  ["#459", "pack-suitcases", "Search & combinatorics", "expansion", "Bin packing and branch-and-bound", "minimum-bins"],
+  ["#454", "repair-broken-regions", "Search & combinatorics", "optional", "Components plus combinatorial optimization", "repair-broken-regions"],
+  ["#224", "phone-letter-combinations", "Search & combinatorics", "expansion", "Backtracking trees", "phone-letter-combinations"],
+  ["#256", "clone-random-pointer-list", "Linked structures", "primary", "Identity-rich object graphs", "clone-random-pointer-list"],
+  ["#260", "swap-adjacent-nodes", "Linked structures", "optional", "Pointer rewiring", "swap-adjacent-nodes"],
+  ["#258", "list-intersection", "Linked structures", "optional", "Reference identity", "list-intersection"],
+  ["#456", "bouncing-logo-to-target", "Simulation & state machines", "optional", "Complete-state modeling and loops", "bouncing-logo-to-target"],
+  ["#383", "white-elephant-exchange", "Simulation & state machines", "expansion", "Stateful rules and invariants", "white-elephant-exchange"],
+  ["#276", "valid-catan-board", "Simulation & state machines", "optional", "Random generation constraints", "valid-catan-board"],
+  ["#259", "count-digit-ones", "Math & number theory", "expansion", "Positional digit counting", "count-digit-ones"],
+  ["#270", "toggle-doors", "Math & number theory", "optional", "Divisor-count and square insight", "toggle-doors"],
+  ["#463", "mean-bit-length", "Math & number theory", "optional", "Power-of-two range aggregation", "mean-bit-length"],
+  ["#238", "hashmap-from-scratch", "Data structures", "expansion", "Hashing, collisions, resizing, deletion", "hashmap-from-scratch"],
+  ["#336", "binary-tree-and-printer", "Data structures", "optional", "Recursive representation and layout", "binary-tree-and-printer"],
+  ["#434", "deck-shuffle-and-draw", "Data structures", "optional", "Encapsulation and Fisher–Yates", "deck-shuffle-and-draw"],
+].map(([issue, slug, territory, tier, learning, localPath]) => ({
+  issue,
+  slug,
+  territory,
+  tier,
+  learning,
+  localPath,
+}));
+
+const localExtensions = [
+  ["circular-route", "Cycle detection practice"],
+  ["climbing-stairs", "Introductory dynamic programming practice"],
+  ["largest-grid-component", "Connected-component practice"],
+  ["minimum-bins", "Bin-packing practice"],
+  ["minimum-swaps-to-sort", "Permutation-cycle practice"],
+  ["rotting-oranges", "Multi-source BFS practice"],
+  ["spiral-matrix", "Simulation practice"],
+].map(([slug, learning]) => ({ slug, learning }));
+
+export { localExtensions, registry };

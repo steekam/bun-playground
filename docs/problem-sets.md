@@ -3,6 +3,13 @@
 This playground uses one directory per coding problem. The solution, cases, and
 tests are separate so a problem can be run like an online judge submission.
 
+The extracted practice catalogue is in [cassidoo-core-10.md](cassidoo-core-10.md).
+The machine-readable catalogue is `problems/registry.js`; use `bun run test:list`
+to see which entries are catalogued versus materialized locally.
+The registry also lists earlier non-Cassidoo exercises as local extensions.
+For the algorithm ideas behind the problem sets, see the
+[pattern guide](patterns/README.md).
+
 ## Directory contract
 
 ```text
@@ -78,6 +85,12 @@ Run all Bun tests:
 bun test
 ```
 
+List the available practice sets:
+
+```bash
+find problems -mindepth 1 -maxdepth 1 -type d | sort
+```
+
 Run one problem's Bun test file:
 
 ```bash
@@ -119,8 +132,8 @@ const cases = [
 ```
 
 The first item is passed directly to `validate`; the second is compared with
-strict equality. Keep cases deterministic and small enough to diagnose from
-the failure output.
+deep strict equality. Keep cases deterministic and small enough to diagnose
+from the failure output.
 
 ## Runner requirements
 

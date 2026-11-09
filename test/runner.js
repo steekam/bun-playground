@@ -1,5 +1,6 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
+import { isDeepStrictEqual } from "node:util";
 
 const problemName = Bun.argv[2];
 
@@ -32,15 +33,24 @@ let passed = 0;
 let failed = 0;
 
 for (const [input, expected] of cases) {
-  const actual = validate(input);
-  const ok = actual === expected;
+  let actual;
+  let error;
+
+  try {
+    actual = validate(input);
+  } catch (caughtError) {
+    error = caughtError;
+  }
+
+  const ok = error === undefined && isDeepStrictEqual(actual, expected);
 
   if (ok) {
     passed += 1;
-    console.log(`✓ ${input} -> ${actual}`);
+    console.log(`✓ ${JSON.stringify(input)} -> ${JSON.stringify(actual)}`);
   } else {
     failed += 1;
-    console.error(`✗ ${input} -> expected ${expected}, received ${actual}`);
+    const result = error ? `threw ${error.message}` : `received ${actual}`;
+    console.error(`✗ ${JSON.stringify(input)} -> expected ${JSON.stringify(expected)}, ${result}`);
   }
 }
 

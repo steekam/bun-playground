@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "test": "bun test",
-    "test:run": "bun test/runner.js"
+    "test:run": "bun test/runner.js",
+    "test:list": "bun test/registry.js"
   },
   "devDependencies": {
     "@types/bun": "latest"
