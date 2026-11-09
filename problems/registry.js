@@ -34,6 +34,19 @@ const registry = [
   ["#238", "hashmap-from-scratch", "Data structures", "expansion", "Hashing, collisions, resizing, deletion", "hashmap-from-scratch"],
   ["#336", "binary-tree-and-printer", "Data structures", "optional", "Recursive representation and layout", "binary-tree-and-printer"],
   ["#434", "deck-shuffle-and-draw", "Data structures", "optional", "Encapsulation and Fisher–Yates", "deck-shuffle-and-draw"],
+  ["#470", "pack-rectangles", "Search & combinatorics", "optional", "Grid tiling versus true rectangle packing", "pack-rectangles"],
+  ["#471", "partition-array", "Greedy & rearrangement", "optional", "Stable three-way partition", "partition-array"],
+  ["#472", "climb-stairs", "Dynamic programming", "expansion", "Fibonacci-style recurrence", "climbing-stairs"],
+  ["#473", "backpack-lock", "Math & number theory", "optional", "Circular distance per digit", "backpack-lock"],
+  ["#474", "longest-sorted-word", "Strings & parsing", "optional", "Per-word scan with a sortedness invariant", "longest-sorted-word"],
+  ["#475", "sundays-in-month", "Simulation & state machines", "optional", "Calendar arithmetic in UTC", "sundays-in-month"],
+  ["#476", "first-frost", "Data structures", "optional", "Moving-threshold next-event search with a heap", "first-frost"],
+  ["#477", "zombie-infection", "Graphs & grids", "expansion", "Multi-source BFS", "rotting-oranges"],
+  ["#478", "trick-or-treat-candy", "Dynamic programming", "expansion", "Take-or-skip DP (House Robber)", "trick-or-treat-candy"],
+  ["#479", "ghostwriter", "Strings & parsing", "optional", "Stack-based editor simulation", "ghostwriter"],
+  ["#480", "halloween-costume-swaps", "Greedy & rearrangement", "expansion", "Permutation cycle counting", "halloween-costume-swaps"],
+  ["#481", "dst-elapsed-minutes", "Simulation & state machines", "optional", "Time arithmetic across a discontinuity", "dst-elapsed-minutes"],
+  ["#482", "comeback-round", "Intervals & prefix techniques", "optional", "Prefix sums and a backward lead scan", "comeback-round"],
 ].map(([issue, slug, territory, tier, learning, localPath]) => ({
   issue,
   slug,
@@ -45,11 +58,9 @@ const registry = [
 
 const localExtensions = [
   ["circular-route", "Cycle detection practice"],
-  ["climbing-stairs", "Introductory dynamic programming practice"],
   ["largest-grid-component", "Connected-component practice"],
   ["minimum-bins", "Bin-packing practice"],
   ["minimum-swaps-to-sort", "Permutation-cycle practice"],
-  ["rotting-oranges", "Multi-source BFS practice"],
   ["spiral-matrix", "Simulation practice"],
 ].map(([slug, learning]) => ({ slug, learning }));
 

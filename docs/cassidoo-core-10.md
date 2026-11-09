@@ -1,8 +1,10 @@
 # Cassidoo Core 10
 
 The full local catalogue is maintained in `problems/registry.js`. It contains
-33 selected prompts from the referenced Cassidoo practice tracker. All 33 are
-now materialized as local problem folders.
+46 selected prompts from Cassidoo's weekly newsletter, covering issues #223–#482. All 46 are
+materialized as local problem folders. The verbatim issue text for every issue
+(#1–#482) is in `data/cassidoo-issues.json`, pulled from the public archive at
+https://cassidoo.co/newsletter/archive.
 
 The recommended practice set is the Primary 10 below. Each materialized problem
 has a prompt, cases, Bun tests, and a reference implementation.
